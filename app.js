@@ -1,4 +1,4 @@
-var config = {
+ var config = {
     apiKey: "AIzaSyC-mUg8A6Dea1XyKLsnIAZFztYpW6j6CrQ",
     authDomain: "fir-project-84353.firebaseapp.com",
     databaseURL: "https://fir-project-84353.firebaseio.com",
@@ -7,7 +7,7 @@ var config = {
     messagingSenderId: "1023129187127"
   };
   firebase.initializeApp(config);
-  var database=firebase().database();
+  var database=firebase.database();
 
   var connectionsRef=database.ref("/connections");
   var connectedRef=database.ref(".info/connected");
@@ -20,4 +20,12 @@ var config = {
 
   connectionsRef.on('value',function(snap){
   	$('#new').text(snap.numChildren());
-  })
+  });
+
+  $('button').on('click',function(){
+  	var value=$('input').val();
+  	console.log(value);
+  	database.ref().push({
+  		name:value
+  	});
+  });
